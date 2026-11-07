@@ -207,3 +207,42 @@ botao.addEventListener('click', () => {
         block: 'start'
     })
 })
+
+
+// Animação de entrada da página
+const reduzirAnimacoes = window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+)
+
+if (!reduzirAnimacoes.matches) {
+  const entrada = gsap.timeline({
+    paused: true,
+    defaults: {
+      ease: 'power3.out'
+    }
+  })
+
+  entrada.from('.cabecalho', {
+    y: -15,
+    autoAlpha: 0,
+    duration: 0.7
+  }, 0)
+
+  entrada.from('.titulo-texto', {
+    yPercent: 110,
+    autoAlpha: 0,
+    duration: 1,
+    stagger: 0.16
+  }, 0.15)
+
+  entrada.from('.hero-cta', {
+    y: 18,
+    autoAlpha: 0,
+    duration: 0.7
+  }, 0.65)
+
+  // Espera a fonte para evitar mudanças no texto durante a entrada
+  document.fonts.ready.then(() => {
+    entrada.play()
+  })
+}

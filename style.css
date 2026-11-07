@@ -12,7 +12,7 @@ html {
 }
 
 html::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 body {
@@ -314,4 +314,14 @@ a:focus-visible {
 .proxima-secao h2 {
     font-size: clamp(32px, 4vw, 64px);
     font-weight: 500;
+}
+
+.titulo-linha {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+}
+
+.titulo-texto {
+    display: block;
 }
