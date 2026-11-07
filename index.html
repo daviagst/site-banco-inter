@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Inter — Cartão 3D</title>
+</head>
+
+<body>
+    <div class="primeira-tela">
+          <!-- Iluminação -->
+        <div class="iluminacao" aria-hidden="true">
+            <div class="luz luz-laranja"></div>
+            <div class="luz luz-amarela"></div>
+            <div class="luz luz-amarela-claro"></div>
+            <div class="luz luz-branca"></div>
+        </div>
+        <!-- Cabeçalho com logo e menu -->
+        <header class="cabecalho">
+            <a class="logo" href="/" aria-label="Inter-Inicio">
+                <img src="public/assets/logo-banco-inter.webp" alt="logo-banco-inter">
+            </a>
+            <nav class="menu" aria-label="Navegação principal">
+                <button type="button" class="menu-item">
+                    Finanças <span aria-hidden="true">⌄</span>
+                </button>
+                <button type="button" class="menu-item">
+                    Estilo de Vida <span aria-hidden="true">⌄</span>
+                </button>
+                <button type="button" class="menu-item">
+                    Segmentos <span aria-hidden="true">⌄</span>
+                </button>
+                <button type="button" class="menu-item">
+                    Visão Global <span aria-hidden="true">⌄</span>
+                </button>
+                <button type="button" class="menu-item">Loop</button>
+            </nav>
+            <div class="acoes">
+                <button type="button" class="acessar">
+                    Acessar Conta
+                </button>
+                <button type="button" class="abrir-conta">
+                    Abra sua conta
+                </button>
+            </div>
+        </header>
+        <section class="hero" aria-labelledby="titulo-hero">
+            <!-- Título e faixa do botão -->
+            <div class="hero-conteudo">
+                <h1 id="titulo-hero">
+                    <strong>O Super App</strong> da sua <br>
+                    <strong>vida financeira.</strong>
+                </h1>
+                <div class="hero-cta">
+                    <span class="hero-cta-texto" aria-hidden="true">
+                        Role para explorar
+                    </span>
+                    <button type="button" class="hero-botao"
+                        aria-label="Ir para a próxima seção.">
+                        Explore <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section id="proxima-secao" class="proxima-secao">
+        <h2>Sua vida financeira em um só lugar.</h2>
+    </section>
+
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

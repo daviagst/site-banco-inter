@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: #1e1e1e;
+    overflow-x: clip;
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100svh;
+    background: #1e1e1e;
+    position: relative;
+    isolation: isolate;
+    color: #fff;
+}
+
+.primeira-tela {
+    position: relative;
+    min-height: 100svh;
+    isolation: isolate;
+}
+
+/* Camada que segura as luzes e corta o excesso nas bordas */
+.iluminacao {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Características compartilhadas pelos três círculos */
+.luz {
+    position: absolute;
+    border-radius: 50%;
+}
+
+/* Luz laranja maior, por trás da amarela */
+.luz-laranja {
+    width: 960px;
+    height: 960px;
+    left: 80%;
+    top: 42svh;
+    transform: translate(-50%, -50%);
+
+    background: #EA7100;
+    filter: blur(110px);
+    opacity: 0.8;
+}
+
+/* Luz mais clara, concentrada atrás do cartão */
+.luz-amarela {
+    width: 540px;
+    height: 540px;
+    left: 79%;
+    top: 41svh;
+    transform: translate(-50%, -50%);
+
+    background: #f8cc3a;
+    filter: blur(75px);
+    opacity: 0.95;
+}
+
+.luz-amarela-claro {
+    width: 240px;
+    height: 240px;
+    left: 79%;
+    top: 41svh;
+    transform: translate(-50%, -50%);
+
+    background-color: #FFF4D1;
+    filter: blur(75px);
+    opacity: 0.95;
+}
+
+/* Luz suave entrando pelo canto superior esquerdo */
+.luz-branca {
+    width: 320px;
+    height: 320px;
+    left: -180px;
+    top: -110px;
+
+    background: #fcfcfc;
+    filter: blur(110px);
+    opacity: 0.25;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 0;
+    pointer-events: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 5px;
+}
+
+.cabecalho {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    padding: 30px 4%;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.logo img {
+    display: block;
+    width: 90px;
+    height: auto;
+}
+
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.menu-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    color: #eee;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.menu-item:hover,
+.acessar:hover {
+    color: #ffbc68;
+}
+
+.acoes {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-left: auto;
+}
+
+.acessar {
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+
+.abrir-conta {
+    padding: 11px 18px;
+    border: 0;
+    border-radius: 25px;
+    background: #ff8700;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 700;
+    transition: 0.6s;
+}
+
+.abrir-conta:hover {
+    scale: 1.1;
+    background-color: #fcfbf9;
+    color: #ff8700;
+}
+
+.hero {
+    position: relative;
+    z-index: 1;
+
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 120px 6% 150px;
+
+    pointer-events: none;
+}
+
+.hero-conteudo {
+    width: 46%;
+    max-width: 760px;
+    pointer-events: auto;
+}
+
+#titulo-hero {
+    margin: 0 0 36px;
+    font-size: clamp(40px, 4.5vw, 78px);
+    font-weight: lighter;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+    font-weight: 200;
+}
+
+#titulo-hero strong {
+    font-weight: 600;
+}
+
+.hero-cta {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    padding: 4px;
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 999px;
+}
+
+.hero-cta-texto {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: 0;
+    padding-right: 28px;
+
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+    pointer-events: none;
+
+}
+
+.hero-botao {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 16px 24px;
+
+    border: 0;
+    border-radius: 999px;
+    background: #414141;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-y;
+
+    transition: background-color 200ms ease;
+}
+
+.hero-botao,
+.hero-botao:active {
+    cursor: pointer;
+    touch-action: auto;
+    user-select: auto;
+}
+
+.hero-botao:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: -4px;
+}
+
+.proxima-secao {
+    position: relative;
+    z-index: 1;
+    min-height: 100svh;
+    padding: 100px 6%;
+    background: transparent;
+}
+
+.proxima-secao h2 {
+    font-size: clamp(32px, 4vw, 64px);
+    font-weight: 500;
+}
