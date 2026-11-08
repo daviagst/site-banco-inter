@@ -211,38 +211,106 @@ botao.addEventListener('click', () => {
 
 // Animação de entrada da página
 const reduzirAnimacoes = window.matchMedia(
-  '(prefers-reduced-motion: reduce)'
+    '(prefers-reduced-motion: reduce)'
 )
 
 if (!reduzirAnimacoes.matches) {
-  const entrada = gsap.timeline({
-    paused: true,
-    defaults: {
-      ease: 'power3.out'
-    }
-  })
+    const entrada = gsap.timeline({
+        paused: true,
+        defaults: {
+            ease: 'power3.out'
+        }
+    })
 
-  entrada.from('.cabecalho', {
-    y: -15,
-    autoAlpha: 0,
-    duration: 0.7
-  }, 0)
+    entrada.from('.cabecalho', {
+        y: -15,
+        autoAlpha: 0,
+        duration: 0.7
+    }, 0)
 
-  entrada.from('.titulo-texto', {
-    yPercent: 110,
-    autoAlpha: 0,
-    duration: 1,
-    stagger: 0.16
-  }, 0.15)
+    entrada.from('.titulo-texto', {
+        yPercent: 110,
+        autoAlpha: 0,
+        duration: 1,
+        stagger: 0.16
+    }, 0.15)
 
-  entrada.from('.hero-cta', {
-    y: 18,
-    autoAlpha: 0,
-    duration: 0.7
-  }, 0.65)
+    entrada.from('.hero-cta', {
+        y: 18,
+        autoAlpha: 0,
+        duration: 0.7
+    }, 0.65)
 
-  // Espera a fonte para evitar mudanças no texto durante a entrada
-  document.fonts.ready.then(() => {
-    entrada.play()
-  })
+    // Espera a fonte para evitar mudanças no texto durante a entrada
+    document.fonts.ready.then(() => {
+        entrada.play()
+    })
 }
+
+const galeria = document.querySelector('#proxima-secao')
+const trilho = document.querySelector('.galeria-trilho')
+const cardsGaleria = gsap.utils.toArray('.galeria-card')
+const frasesGaleria = gsap.utils.toArray('.galeria-frase')
+
+// Distância entre o começo de um cartão e o próximo
+function passoDaGaleria() {
+    return cardsGaleria[1].offsetLeft - cardsGaleria[0].offsetLeft
+}
+
+const sequenciaGaleria = gsap.timeline({
+    scrollTrigger: {
+        trigger: galeria,
+        start: 'top top',
+        end: () => `+=${window.innerHeight * 3}`,
+        scrub: 0.6,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+    }
+})
+
+// Primeira frase aparece
+sequenciaGaleria.fromTo(
+    frasesGaleria[0],
+    { y: 40, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 0.35 },
+    0
+)
+
+// Primeira imagem sai; segunda entra
+sequenciaGaleria.to(trilho, {
+    x: () => -passoDaGaleria(),
+    duration: 1,
+    ease: 'none'
+}, 0.6)
+
+// Segunda frase aparece durante a chegada
+sequenciaGaleria.fromTo(
+    frasesGaleria[1],
+    { y: 40, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 0.35 },
+    1.25
+)
+
+// Segunda imagem sai; terceira entra
+sequenciaGaleria.to(trilho, {
+    x: () => -passoDaGaleria() * 2,
+    duration: 1,
+    ease: 'none'
+}, 1.9)
+
+// Terceira frase aparece
+sequenciaGaleria.fromTo(
+    frasesGaleria[2],
+    { y: 40, autoAlpha: 0 },
+    { y: 0, autoAlpha: 1, duration: 0.35 },
+    2.55
+)
+
+// Reserva um pequeno trecho de rolagem para ler a última frase
+sequenciaGaleria.to({}, { duration: 0.4 })
+
+document.fonts.ready.then(() => {
+    ScrollTrigger.refresh()
+})
