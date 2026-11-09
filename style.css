@@ -334,6 +334,7 @@ a:focus-visible {
 
     overflow: hidden;
     border-radius: 36px;
+    transition: 0.6s;
 }
 
 /* Imagem preenche o cartão sem deformar */
@@ -342,6 +343,10 @@ a:focus-visible {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.galeria-card:hover {
+    scale: 1.07;
 }
 
 /* Escurece a base para dar leitura ao texto */
@@ -372,4 +377,116 @@ a:focus-visible {
 
 .galeria-frase span {
     color: #ff8700;
+}
+
+.global-account {
+    position: relative;
+    isolation: isolate;
+    min-height: 85svh;
+    padding: 100px 8%;
+
+    display: flex;
+    align-items: center;
+}
+
+/* Luz suave atrás da imagem */
+.global-account::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+
+    width: min(480px, 70vw);
+    aspect-ratio: 1;
+    left: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+    background: #d9d3bf;
+    filter: blur(100px);
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.global-conteudo {
+    width: 100%;
+    max-width: 1250px;
+    margin-inline: auto;
+
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    align-items: center;
+    gap: clamp(32px, 5vw, 80px);
+}
+
+.global-imagem {
+    overflow: hidden;
+    border-radius: 36px;
+    aspect-ratio: 1.15;
+}
+
+.global-imagem img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.global-texto h2 {
+    margin-bottom: 20px;
+    font-size: clamp(39px, 4.5vw, 74px);
+    line-height: 1.05;
+    font-weight: 500;
+    letter-spacing: -1.5px;
+}
+
+.global-texto h2 span {
+    color: #ff8700;
+}
+
+.global-texto p {
+    margin-bottom: 28px;
+    color: #c7c7c7;
+    font-size: clamp(16px, 1.3vw, 25px);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.global-botao {
+    padding: 14px 48px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+
+    background: #353535;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: 0.6s;
+}
+
+.global-botao:hover {
+    background: #ff8700;
+    color: #fff;
+}
+
+@media (max-width: 700px) {
+    .global-account {
+        padding: 80px 6%;
+    }
+
+    .global-conteudo {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .global-imagem {
+        width: 100%;
+        max-width: 480px;
+        margin-inline: auto;
+    }
+
+    .global-texto {
+        text-align: center;
+    }
 }

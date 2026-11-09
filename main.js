@@ -314,3 +314,60 @@ sequenciaGaleria.to({}, { duration: 0.4 })
 document.fonts.ready.then(() => {
     ScrollTrigger.refresh()
 })
+
+//Entrada da seção Global Account
+const animacaoGlobal = gsap.matchMedia()
+
+animacaoGlobal.add(
+    '(prefers-reduced-motion: no-preference)',
+    () => {
+        const entradaGlobal = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.global-account',
+                start: 'top 75%',
+                once: true
+            },
+            defaults: {
+                duration: 0.9,
+                ease: 'power3.out'
+            }
+        })
+
+        entradaGlobal.fromTo(
+            '.global-imagem',
+            { x: -35, autoAlpha: 0 },
+            { x: 0, autoAlpha: 1 },
+            0
+        )
+
+        entradaGlobal.fromTo(
+            '.global-texto h2',
+            { y: 25, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1 },
+            0.15
+        )
+
+        entradaGlobal.fromTo(
+            '.global-texto p',
+            { y: 25, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1 },
+            0.3
+        )
+
+        entradaGlobal.fromTo(
+            '.global-botao',
+            {
+                y: 20,
+                autoAlpha: 0,
+                scale: 0.95
+            },
+            {
+                y: 0,
+                autoAlpha: 1,
+                scale: 1,
+                duration: 0.3
+            },
+            0.1
+        )
+    }
+)
