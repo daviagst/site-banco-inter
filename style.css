@@ -490,3 +490,137 @@ a:focus-visible {
         text-align: center;
     }
 }
+
+.pj-faixa-superior,
+.pj-faixa-inferior {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 36px;
+    z-index: 2;
+
+    background: #1e1e1e;
+    pointer-events: none;
+}
+
+.pj-faixa-superior {
+    top: 0;
+    border-radius: 0 0 32px 32px;
+}
+
+.pj-faixa-inferior {
+    bottom: 0;
+    border-radius: 32px 32px 0 0;
+}
+
+.conta-pj {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    min-height: 80svh;
+    padding: 100px 6%;
+
+    display: grid;
+    place-items: center;
+    background: #211a13;
+}
+
+.pj-fundo {
+    position: absolute;
+    z-index: -2;
+
+    top: -40%;
+    left: 0;
+    width: 100%;
+    height: 180%;
+    max-width: none;
+
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.conta-pj::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.pj-conteudo {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.pj-conteudo h2 {
+    margin-bottom: 30px;
+
+    color: #fff;
+    font-size: clamp(30px, 3.8vw, 60px);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+.pj-palavra {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+
+    /* Espaço para não cortar a parte inferior das letras */
+    padding-bottom: 0.12em;
+    margin-bottom: -0.12em;
+}
+
+.pj-letra {
+    display: inline-block;
+}
+
+.pj-conteudo h2 {
+    color: #fff;
+}
+
+.pj-conteudo h2 .pj-destaque {
+    color: #ff8700;
+    font-weight: 500;
+}
+
+.pj-botao {
+    width: min(100%, 400px);
+    padding: 16px 28px;
+
+    border: 0;
+    border-radius: 999px;
+    background: #ff8700;
+    color: #fff;
+
+    font-size: 18px;
+    font-weight: 500px;
+
+    transition: 0.5s ease;
+}
+
+.pj-botao:hover {
+    background: #ffffff;
+    color: #ff8700;
+}
+
+@media (max-width: 700px) {
+    .conta-pj {
+        min-height: 70svh;
+        padding: 80px 6%;
+    }
+
+    .pj-conteudo h2 br {
+        display: none;
+    }
+}
+
+.espaco-teste {
+    height: 100svh;
+}

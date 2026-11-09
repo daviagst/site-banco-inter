@@ -371,3 +371,108 @@ animacaoGlobal.add(
         )
     }
 )
+
+// Parallax da seção Conta PJ
+const parallaxPJ = gsap.matchMedia()
+
+parallaxPJ.add(
+    '(prefers-reduced-motion: no-preference)',
+    () => {
+        gsap.fromTo(
+            '.pj-fundo',
+            {
+                yPercent: -20
+            },
+            {
+                yPercent: 20,
+                ease: 'none',
+
+                scrollTrigger: {
+                    trigger: '.conta-pj',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true,
+                    invalidateOnRefresh: true
+                }
+            }
+        )
+    }
+)
+
+const tituloPJ = document.querySelector('#titulo-pj')
+
+// Preserva o texto completo para leitores de tela
+tituloPJ.setAttribute(
+    'aria-label',
+    tituloPJ.textContent.replace(/\s+/g, ' ').trim()
+)
+
+// Encontra os textos, inclusive dentro dos trechos laranja
+const leitorPJ = document.createTreeWalker(
+    tituloPJ,
+    NodeFilter.SHOW_TEXT
+)
+
+const textosPJ = []
+
+while (leitorPJ.nextNode()) {
+    textosPJ.push(leitorPJ.currentNode)
+}
+
+// Separa as letras, mantendo as palavras e os espaços
+textosPJ.forEach((texto) => {
+    const fragmento = document.createDocumentFragment()
+    const partes = texto.textContent.match(/\S+|\s+/g) || []
+
+    partes.forEach((parte) => {
+        if (/^\s+$/.test(parte)) {
+            fragmento.appendChild(document.createTextNode(parte))
+            return
+        }
+
+        const palavra = document.createElement('span')
+        palavra.className = 'pj-palavra'
+        palavra.setAttribute('aria-hidden', 'true')
+
+        Array.from(parte).forEach((caractere) => {
+            const letra = document.createElement('span')
+            letra.className = 'pj-letra'
+            letra.textContent = caractere
+
+            palavra.appendChild(letra)
+        })
+
+        fragmento.appendChild(palavra)
+    })
+
+    texto.replaceWith(fragmento)
+})
+
+// Anima as letras quando o título entra na tela
+const letrasPJ = gsap.matchMedia()
+
+letrasPJ.add(
+    '(prefers-reduced-motion: no-preference)',
+    () => {
+        gsap.fromTo(
+            '#titulo-pj .pj-letra',
+            {
+                yPercent: 115,
+                opacity: 0
+            },
+            {
+                yPercent: 0,
+                opacity: 1,
+                duration: 0.55,
+                stagger: 0.025,
+                ease: 'power3.out',
+
+                scrollTrigger: {
+                    trigger: '#titulo-pj',
+                    start: 'top 85%',
+                    once: true
+                }
+            }
+        )
+    }
+)
