@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -476,3 +477,178 @@ letrasPJ.add(
         )
     }
 )
+
+const palcoCartoes = document.querySelector('.cartoes-palco')
+const opcoesCartoes = gsap.utils.toArray('.cartao-opcao')
+const detalhesCartao = document.querySelector('.cartao-detalhes')
+const nomeCartao = document.querySelector('.cartao-nome')
+const descricaoCartao = document.querySelector('.cartao-descricao')
+const voltarCartoes = document.querySelector('.cartoes-voltar')
+const instrucaoCartoes = document.querySelector('.cartoes-instrucao')
+
+// Textos provisórios: substitua pelos conteúdos finais
+const dadosCartoes = {
+    gold: {
+        nome: 'Gold',
+        descricao: 'Sem anuidade'
+    },
+    platinum: {
+        nome: 'Platinum',
+        descricao: 'Sem anuidade'
+    },
+    prime: {
+        nome: 'Prime',
+        descricao: 'Sem anuidade'
+    },
+    win: {
+        nome: 'Win',
+        descricao: 'Sem anuidade'
+    }
+}
+
+const movimentoCartoes = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+)
+
+let cartaoSelecionado = null
+
+// Usa o centro de cada botão como referência
+gsap.set(opcoesCartoes, {
+    xPercent: -50,
+    yPercent: -50
+})
+
+// Organiza os cartões conforme o estado da seção
+function posicionarCartoes(animar = true) {
+    const largura = palcoCartoes.clientWidth
+    const celular = window.innerWidth <= 760
+    const centroY = celular ? 190 : 360
+    const larguraCartao = opcoesCartoes[0].offsetWidth
+
+    const restantes = cartaoSelecionado === null
+        ? []
+        : [1, 2, 3].map(
+            (passo) => (cartaoSelecionado + passo) % opcoesCartoes.length
+        )
+
+    opcoesCartoes.forEach((botao, indice) => {
+        let x
+        let escala
+        let camada
+
+        if (cartaoSelecionado === null) {
+            // Todos agrupados no centro
+            x = largura / 2
+                + (indice - 1.5) * larguraCartao * 0.32
+
+            escala = 1 - indice * 0.035
+            camada = 4 - indice
+
+        } else if (indice === cartaoSelecionado) {
+            // Cartão escolhido à esquerda
+            x = largura * (celular ? 0.22 : 0.17)
+
+            escala = 1
+            camada = 10
+
+        } else {
+            // Os demais agrupados à direita
+            const ordem = restantes.indexOf(indice)
+
+            x = largura * (celular ? 0.62 : 0.77)
+                + ordem * larguraCartao * 0.22
+
+            escala = 0.9 - ordem * 0.035
+            camada = 4 - ordem
+        }
+
+        botao.style.zIndex = camada
+
+        botao.setAttribute(
+            'aria-expanded',
+            String(indice === cartaoSelecionado)
+        )
+
+        gsap.to(botao, {
+            x,
+            y: centroY,
+            scale: escala,
+            rotation: cartaoSelecionado === indice ? -4 : 4,
+            duration: animar && !movimentoCartoes.matches ? 0.8 : 0,
+            ease: 'power3.inOut',
+            overwrite: true
+        })
+    })
+}
+
+opcoesCartoes.forEach((botao, indice) => {
+    botao.addEventListener('click', () => {
+        if (cartaoSelecionado === indice) return
+
+        cartaoSelecionado = indice
+
+        const dados = dadosCartoes[botao.dataset.cartao]
+        detalhesCartao.dataset.cartao = botao.dataset.cartao
+
+        nomeCartao.textContent = dados.nome
+        descricaoCartao.textContent = dados.descricao
+        detalhesCartao.hidden = false
+
+        instrucaoCartoes.textContent =
+            'Selecione outro cartão para comparar'
+
+        posicionarCartoes()
+
+        gsap.fromTo(
+            detalhesCartao,
+            { opacity: 0 },
+            {
+                opacity: 1,
+                duration: movimentoCartoes.matches ? 0 : 0.45,
+                delay: movimentoCartoes.matches ? 0 : 0.25,
+                overwrite: true
+            }
+        )
+    })
+})
+
+voltarCartoes.addEventListener('click', () => {
+    const indiceAnterior = cartaoSelecionado
+
+    cartaoSelecionado = null
+    detalhesCartao.hidden = true
+
+    instrucaoCartoes.textContent =
+        'Escolha um cartão para conhecer'
+
+    posicionarCartoes()
+
+    if (indiceAnterior !== null) {
+        opcoesCartoes[indiceAnterior].focus({ preventScroll: true })
+    }
+})
+
+// Flutuação independente do movimento dos botões
+const flutuacaoCartoes = gsap.matchMedia()
+
+flutuacaoCartoes.add(
+    '(prefers-reduced-motion: no-preference)',
+    () => {
+        opcoesCartoes.forEach((botao, indice) => {
+            gsap.to(botao.querySelector('img'), {
+                y: -12,
+                duration: 1.8,
+                delay: indice * 0.35,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            })
+        })
+    }
+)
+
+posicionarCartoes(false)
+
+window.addEventListener('resize', () => {
+    posicionarCartoes(false)
+})

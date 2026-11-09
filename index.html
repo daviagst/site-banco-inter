@@ -25,7 +25,7 @@
         <!-- Cabeçalho com logo e menu -->
         <header class="cabecalho">
             <a class="logo" href="/" aria-label="Inter-Inicio">
-                <img src="public/assets/logo-banco-inter.webp" alt="logo-banco-inter">
+                <img src="/assets/logo-banco-inter.webp" alt="logo-banco-inter">
             </a>
             <nav class="menu" aria-label="Navegação principal">
                 <button type="button" class="menu-item">
@@ -82,7 +82,7 @@
     <section id="proxima-secao" class="proxima-secao" aria-label="Conheça o Super App">
         <div class="galeria-trilho">
             <article class="galeria-card">
-                <img src="public/assets/imagem-1.webp" alt="Cliente segurando um cartão Inter">
+                <img src="/assets/imagem-1.webp" alt="Cliente segurando um cartão Inter">
 
                 <h2 class="galeria-frase">
                     <span>Cartão de crédito</span> e<br>
@@ -91,7 +91,7 @@
             </article>
 
             <article class="galeria-card">
-                <img src="public/assets/imagem-2.webp" alt="Pessoa usando o aplicativo no celular">
+                <img src="/assets/imagem-2.webp" alt="Pessoa usando o aplicativo no celular">
 
                 <h2 class="galeria-frase">
                     <span>Transações</span> rápidas<br>
@@ -100,7 +100,7 @@
             </article>
 
             <article class="galeria-card">
-                <img src="public/assets/imagem-3.webp" alt="Cliente usando o celular ao lado de uma bicicleta">
+                <img src="/assets/imagem-3.webp" alt="Cliente usando o celular ao lado de uma bicicleta">
 
                 <h2 class="galeria-frase">
                     <span>Vida financeira</span> inteligente<br>
@@ -113,7 +113,7 @@
     <section class="global-account" aria-labelledby="titulo-global">
         <div class="global-conteudo">
             <div class="global-imagem">
-                <img src="public/assets/imagem-4.webp" alt="Cliente usando o celular durante uma viagem" loading="lazy">
+                <img src="/assets/imagem-4.webp" alt="Cliente usando o celular durante uma viagem" loading="lazy">
             </div>
 
             <div class="global-texto">
@@ -122,7 +122,7 @@
                 </h2>
 
                 <p>Conta em dólar, sem taxa<br>
-                e com muitas vantagens.</p>
+                    e com muitas vantagens.</p>
 
                 <button type="button" class="global-botao">Conheça a Global Account</button>
             </div>
@@ -132,18 +132,97 @@
     <section class="conta-pj" aria-labelledby="titulo-pj">
         <div class="pj-faixa-superior" aria-hidden="true"></div>
         <div class="pj-faixa-inferior" aria-hidden="true"></div>
-        
-        <img class="pj-fundo" src="public/assets/imagem-5.webp" alt="" loading="lazy">
+
+        <img class="pj-fundo" src="/assets/imagem-5.webp" alt="" loading="lazy">
         <div class="pj-conteudo">
             <h2 id="titulo-pj">
-                Conta <span class="pj-destaque">PJ</span> para superar os desafios <span class="pj-destaque">do seu negócio.</span>
+                Conta <span class="pj-destaque">PJ</span> para superar os desafios <span class="pj-destaque">do seu
+                    negócio.</span>
             </h2>
             <button type="button" class="pj-botao">
                 Conheça a Conta PJ
             </button>
         </div>
     </section>
-    <div class="espaco-teste" aria-hidden="true"></div>
+
+    <section class="cartoes" aria-label="Conheça nossos cartões">
+        <div class="cartoes-palco">
+            <button class="cartao-opcao" type="button" data-cartao="gold" aria-label="Conhecer o cartão Inter Gold"
+                aria-expanded="false" aria-controls="cartao-detalhes">
+                <img src="/assets/cartao-1.png" alt="">
+            </button>
+
+            <button class="cartao-opcao" type="button" data-cartao="platinum"
+                aria-label="Conhecer o cartão Inter Platinum" aria-expanded="false" aria-controls="cartao-detalhes">
+                <img src="/assets/cartao-2.png" alt="">
+            </button>
+
+            <button class="cartao-opcao" type="button" data-cartao="prime" aria-label="Conhecer o cartão Inter Prime"
+                aria-expanded="false" aria-controls="cartao-detalhes">
+                <img src="/assets/cartao-3.png" alt="">
+            </button>
+
+            <button class="cartao-opcao" type="button" data-cartao="win" aria-label="Conhecer o cartão Inter Win"
+                aria-expanded="false" aria-controls="cartao-detalhes">
+                <img src="/assets/cartao-4.png" alt="">
+            </button>
+
+            <div id="cartao-detalhes" class="cartao-detalhes" aria-live="polite" hidden>
+                <h2>
+                    <span class="cartao-marca">Inter</span>
+                    <span class="cartao-nome"></span>
+                </h2>
+
+                <p class="cartao-descricao">Sem anuidade</p>
+
+                <h3 class="cartao-subtitulo">
+                    Troque os pontos Loop por:
+                </h3>
+
+                <ul class="cartao-beneficios">
+                    <li>
+                        <i class="fa-solid fa-plane" aria-hidden="true"></i>
+                        <span>Milhas para viajar mais barato</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-dollar-sign" aria-hidden="true"></i>
+                        <span>Dólares na sua conta global</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-coins" aria-hidden="true"></i>
+                        <span>Cashback direto na conta</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-receipt" aria-hidden="true"></i>
+                        <span>Descontos na fatura</span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-martini-glass" aria-hidden="true"></i>
+                        <span>
+                            Acesso a Salas VIP com buffet completo e bebidas à vontade
+                        </span>
+                    </li>
+
+                    <li>
+                        <i class="fa-solid fa-piggy-bank" aria-hidden="true"></i>
+                        <span>Investimentos</span>
+                    </li>
+                </ul>
+
+                <button type="button" class="cartoes-voltar">
+                    ← Ver todos juntos
+                </button>
+            </div>
+        </div>
+
+        <p class="cartoes-instrucao">
+            Escolha um cartão para conhecer
+        </p>
+    </section>
 
 
     <script type="module" src="main.js"></script>

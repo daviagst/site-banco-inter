@@ -621,6 +621,233 @@ a:focus-visible {
     }
 }
 
-.espaco-teste {
-    height: 100svh;
+.cartoes {
+    position: relative;
+    isolation: isolate;
+    padding: 60px 4%;
+}
+
+/* Brilho suave atrás do grupo */
+.cartoes::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: min(600px, 80vw);
+    height: 400px;
+    border-radius: 50%;
+    background: #aaa;
+    opacity: 0.12;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.cartoes-palco {
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    height: 720px;
+    margin-inline: auto;
+}
+
+.cartao-opcao {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: clamp(220px, 28vw, 580px);
+    aspect-ratio: 0.63;
+    padding: 0;
+
+    border: 0;
+    border-radius: 16px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.cartao-opcao img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+}
+
+.cartao-opcao:focus-visible {
+    outline: 2px solid #ff8700;
+    outline-offset: 8px;
+}
+
+.cartao-detalhes {
+    position: absolute;
+    top: 50%;
+    left: 34%;
+    width: 30%;
+    transform: translateY(-50%);
+    z-index: 20;
+}
+
+.cartao-detalhes[hidden] {
+    display: none;
+}
+
+.cartao-detalhes h2 {
+    margin-bottom: 16px;
+    font-size: clamp(28px, 3vw, 46px);
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.cartao-marca {
+    color: #ff8700;
+}
+
+.cartao-descricao {
+    color: #c7c7c7;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.cartoes-voltar {
+    margin-top: 28px;
+    padding: 10px 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-size: 14px;
+}
+
+.cartoes-voltar:hover {
+    color: #ff8700;
+}
+
+.cartoes-instrucao {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* Tema inicial: Gold */
+.cartao-detalhes {
+  --cor-icone: #ff8700;
+  --degrade-inter: linear-gradient(
+    135deg,
+    #ffb347,
+    #ff8700 50%,
+    #d96500
+  );
+}
+
+/* Platinum: acabamento prateado */
+.cartao-detalhes[data-cartao="platinum"] {
+  --cor-icone: #c5c5c5;
+  --degrade-inter: linear-gradient(
+    135deg,
+    #f0f0f0,
+    #909090 45%,
+    #d8d8d8 70%,
+    #777
+  );
+}
+
+/* Prime: acabamento grafite */
+.cartao-detalhes[data-cartao="prime"] {
+  --cor-icone: #9d9d9d;
+  --degrade-inter: linear-gradient(
+    90deg,
+    #000000 0%,
+    #141414 54%,
+    #1b1b1b 100%
+  );
+}
+
+/* Win: acabamento azul */
+.cartao-detalhes[data-cartao="win"] {
+  --cor-icone: #729ac5;
+  --degrade-inter: linear-gradient(
+    135deg,
+    #5485b9,
+    #173c65 45%,
+    #071a31
+  );
+}
+
+/* O degradê aparece apenas dentro das letras */
+.cartao-detalhes .cartao-marca {
+  display: inline-block;
+  background: var(--degrade-inter);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.cartao-detalhes .cartao-nome {
+  color: #fff;
+}
+
+.cartao-detalhes h2 {
+  margin-bottom: 4px;
+}
+
+.cartao-descricao {
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.cartao-subtitulo {
+  margin-bottom: 18px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cartao-beneficios {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.cartao-beneficios li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+
+  color: #d2d2d2;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.cartao-beneficios i {
+  flex: 0 0 20px;
+  margin-top: 2px;
+
+  color: var(--cor-icone);
+  font-size: 17px;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .cartoes-palco {
+    height: 850px;
+  }
+
+  .cartao-opcao {
+    width: 23%;
+  }
+
+  .cartao-beneficios {
+    text-align: left;
+    gap: 18px;
+  }
 }
